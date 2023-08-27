@@ -7,7 +7,6 @@ import * as RiIcons from "react-icons/ri"
 export const SideBarData=[
     {
         title:"Overview",
-        path:"/overview",
         icon:<AiIcons.AiFillHome/>,
         iconClosed:<RiIcons.RiArrowDownFill/>,
         iconOpened:<RiIcons.RiArrowUpSFill/>,
@@ -26,7 +25,6 @@ export const SideBarData=[
     },
     {
         title:"Reports",
-        path:"/reports",
         icon:<AiIcons.AiFillHome/>,
         iconClosed:<RiIcons.RiArrowDownFill/>,
         iconOpened:<RiIcons.RiArrowUpSFill/>,
@@ -50,7 +48,6 @@ export const SideBarData=[
     },
     {
         title:"Products",
-        path:"/products",
         icon:<AiIcons.AiFillHome/>,
         iconClosed:<RiIcons.RiArrowDownFill/>,
         iconOpened:<RiIcons.RiArrowUpSFill/>,
