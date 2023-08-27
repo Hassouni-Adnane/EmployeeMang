@@ -1,6 +1,7 @@
-import React, { useState, useNavigate } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
     display: flex;
@@ -51,13 +52,13 @@ function Login() {
         user: '',
         psw: '',
     })
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const handleSubmit = (event) => {
         event.preventDefault();
         axios.post('http://localhost:8081/login', text)
         .then(res => {
             if(res.data.Status==="success"){
-                navigate('/')
+                navigate('/');
             }
             else{setError(res.data.Error);}
         })

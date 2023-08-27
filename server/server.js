@@ -14,7 +14,7 @@ const con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "",
-    database: "employeeManag",
+    database: "employeemanag",
 })
 
 con.connect(function(err){
@@ -27,10 +27,10 @@ con.connect(function(err){
 })
 
 app.post('/login', (req, res) =>{
-    const sql = "SELECT * FROM user WHERE email= ? && password = ?"
-    con.query(sql, [req.body.email, req.body.password], (err, result)=>{
-        if(err) return res.json({Status: "error in server", Error: "error in running query"});
-        if(result.lenght > 0) return res.json({Status: "success"})
+    const sql = "SELECT * FROM user WHERE email= ? AND password = ?"
+    con.query(sql, [req.body.user, req.body.psw], (err, result)=>{
+        if(err) return res.json({Status: "error", Error: "error in running query"});
+        if(result.length > 0) return res.json({Status: "success"})
         else return res.json({Status: "error", Error: "wrong email or password"})
     })
 })
