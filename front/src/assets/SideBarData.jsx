@@ -3,14 +3,18 @@ import * as FaIcons from "react-icons/fa"
 import * as AiIcons from "react-icons/ai"
 import * as IoIcons from "react-icons/io"
 import * as RiIcons from "react-icons/ri"
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
+import AccountBoxOutlinedIcon from '@mui/icons-material/AccountBoxOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 export const SideBarData=[
     {
-        title:"Overview",
-        icon:<AiIcons.AiFillHome/>,
-        iconClosed:<RiIcons.RiArrowDownFill/>,
-        iconOpened:<RiIcons.RiArrowUpSFill/>,
-        subNav:[
+        title:"Home",
+        path:"/home",
+        icon:<HomeOutlinedIcon/>,
+        /*iconClosed:<RiIcons.RiArrowDownFill/>,
+        iconOpened:<RiIcons.RiArrowUpSFill/>,*/
+        /*subNav:[
             {
                 title:"Users",
                 path:"/overview/users",
@@ -21,14 +25,15 @@ export const SideBarData=[
                 path:"/overview/revenue",
                 icon:<IoIcons.IoIosPaper/>,
             },
-        ]
+        ]*/
     },
     {
-        title:"Reports",
-        icon:<AiIcons.AiFillHome/>,
-        iconClosed:<RiIcons.RiArrowDownFill/>,
-        iconOpened:<RiIcons.RiArrowUpSFill/>,
-        subNav:[
+        title:"Profile",
+        path:"/profile",
+        icon:<AccountBoxOutlinedIcon/>,
+        /*iconClosed:<RiIcons.RiArrowDownFill/>,
+        iconOpened:<RiIcons.RiArrowUpSFill/>,*/
+        /*subNav:[
             {
                 title:"Reports",
                 path:"/reports/reports1",
@@ -44,14 +49,15 @@ export const SideBarData=[
                 path:"/reports/reports3",
                 icon:<IoIcons.IoIosPaper/>,
             },
-        ]
+        ]*/
     },
     {
-        title:"Products",
-        icon:<AiIcons.AiFillHome/>,
-        iconClosed:<RiIcons.RiArrowDownFill/>,
-        iconOpened:<RiIcons.RiArrowUpSFill/>,
-        subNav:[
+        title:"Employee",
+        path:"/employee",
+        icon:<BadgeOutlinedIcon/>,
+        /*iconClosed:<RiIcons.RiArrowDownFill/>,
+        iconOpened:<RiIcons.RiArrowUpSFill/>,*/
+        /*subNav:[
             {
                 title:"Products",
                 path:"/products/products1",
@@ -67,6 +73,6 @@ export const SideBarData=[
                 path:"/products/products3",
                 icon:<IoIcons.IoIosPaper/>,
             },
-        ]
+        ]*/
     },
 ]
