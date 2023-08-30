@@ -5,7 +5,7 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import {SideBarData} from "./assets/SideBarData"
 import SubMenu from "./assets/SubMenu";
- 
+
 
 const Nav = styled.div`
   background: #15171c;
@@ -36,6 +36,10 @@ const SideBarNav = styled.nav`
 const SideBarWrap = styled.div`
   width: 100%;
 `;
+const Title = styled.h1`
+  color: snow;
+  margin: auto
+`
 
 function Dashboard() {
     const [sidebar, setSidebar]=useState(false)
@@ -47,6 +51,7 @@ function Dashboard() {
             <NavIcon to="#" >
             <FaIcons.FaBars  onClick={showSidebar}/>
             </NavIcon>
+            <Title>Employee Management System</Title>
         </Nav>
         <SideBarNav sidebar={sidebar}>
             <SideBarWrap>
