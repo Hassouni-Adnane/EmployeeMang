@@ -33,8 +33,6 @@ const LinkLabel = styled(Link)`
   border: none;
   cursor: pointer;
   margin: auto;
-  //display: flex;
-  //align-items: center;
 `
 
 function Employee() {

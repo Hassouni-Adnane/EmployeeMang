@@ -35,6 +35,18 @@ app.post('/login', (req, res) =>{
     })
 })
 
+app.post('/creat', (req, res) => {
+    //console.log(req.file); for this to work we need to install `multer` and `path` in our project packages
+    const sql = "INSERT INTO emoloyee(`name`, `email`, `password`, `address`, `image`) VALUES(?, ?, ?, ?, ?)"
+    con.query(sql, [req.body.name, req.body.email, req.body.password, req.body.address, req.body.image],
+        (err, result)=>{
+            if(err) return res.json({Status: "error", Error: err});
+            if (result.affectedRows > 0) {
+                return res.json({ Status: "success" });
+            } else {
+                return res.json({ Status: "error", Error: "Insertion failed" });
+            }})})
+
 app.listen(8081, ()=> {
     console.log("running");
 })
