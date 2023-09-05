@@ -48,6 +48,7 @@ function AddEmployee() {
     address: '',
     image: '',
   })
+
   const handleSubmit = (event =>{
     event.preventDefault();
     const formdata = new FormData();
@@ -58,8 +59,8 @@ function AddEmployee() {
     formdata.append('image', data.image);
 
     axios.post('http://localhost:8081/creat', formdata)
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+    .then(console.log(res))
+    .catch(console.log(err));
   })
 
   return (
@@ -69,23 +70,23 @@ function AddEmployee() {
           Add Employee
         </Title>
         <Label> Name</Label>
-        <Input type='text' name='name' value={data.name} placeholder='Enter name'
+        <Input type='text' name='name' id='name' value={data.name} placeholder='Enter name'
         onChange={e=> setData({...data, name: e.target.value})}/>
 
         <Label> Email</Label>
-        <Input type='email' name='email' value={data.email} placeholder='Enter email'
+        <Input type='email' name='email' id='email' value={data.email} placeholder='Enter email'
         onChange={e=> setData({...data, email: e.target.value})}/>
 
         <Label>Password</Label>
-        <Input type='password' name='password' value={data.password} placeholder='Enter password'
+        <Input type='password' name='password' id='password' value={data.password} placeholder='Enter password'
         onChange={e=> setData({...data, password: e.target.value})}/>
 
         <Label>Address</Label>
-        <Input type='text' name='address' value={data.address} placeholder='Ex: Street 123 ...'
+        <Input type='text' name='address' id='address' value={data.address} placeholder='Ex: Street 123 ...'
         onChange={e=> setData({...data, address: e.target.value})}/>
 
         <Label>Select Image</Label>
-        <Input type='file' name='image' value={data.file} 
+        <Input type='file' name='image' id='image'
         onChange={e=> setData({...data, image: e.target.files[0]})}/>
 
         <Button>
