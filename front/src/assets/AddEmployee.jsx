@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -24,22 +25,51 @@ const Input = styled.input`
   border: none;
   border-radius: 10px;
   font-size: medium;
-
 `
 const Button = styled.button`
-  margin-top: 15px;
+  margin: 15px 0px;
   padding: 10px;
   background-color: #5555e2;
   border-radius: 10px;
   border: none;
-  
+  cursor: pointer;  
 `
 const Label = styled.p`
   font-size: large;
   font-weight: bold;
 `
+const CustomButton = styled.label`
+  text-align: start;
+  height: 50px;
+  width: 110px;
+  background-color: #5555e2;
+  color: white;
+  border-top-left-radius: 5px;  
+  border-bottom-left-radius: 5px;
+  cursor: pointer;
+  font-weight: medium;
+  z-index: 2;
+`;
+const FileInputContainer = styled.div`
+  display: flex;
+  margin-top: 10px;
+`;
+const CustomFileInput = styled.input`
+  position: relative;
+  right: 105px;
+  width: 100vh;
+  height: 50px;
+  background-color: lightblue;
+  border: none;
+  border-radius: 10px;
+  font-size: medium;
+  font-weight: medium;
+
+`;
 
 function AddEmployee() {
+
+  const navigate = useNavigate();
 
   const [data, setData] = useState({
     name: '',
@@ -59,7 +89,9 @@ function AddEmployee() {
     formdata.append('image', data.image);
 
     axios.post('http://localhost:8081/creat', formdata)
-    .then(console.log(res))
+    .then(res=>{
+      navigate('/employee')
+    })
     .catch(console.log(err));
   })
 
@@ -86,9 +118,13 @@ function AddEmployee() {
         onChange={e=> setData({...data, address: e.target.value})}/>
 
         <Label>Select Image</Label>
-        <Input type='file' name='image' id='image'
-        onChange={e=> setData({...data, image: e.target.files[0]})}/>
-
+        <FileInputContainer>
+          <CustomButton htmlFor="image">
+            Choose an Image
+          </CustomButton>
+          <CustomFileInput type='file' name='image' id='image'
+          onChange={e=> setData({...data, image: e.target.files[0]})}/>
+        </FileInputContainer>
         <Button>
           Create
         </Button>
