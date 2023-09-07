@@ -83,6 +83,7 @@ function AddEmployee() {
     event.preventDefault();
     const formdata = new FormData();
     formdata.append('name', data.name);
+    formdata.append('salary', data.salary);
     formdata.append('email', data.email);
     formdata.append('password', data.password);
     formdata.append('address', data.address);
@@ -104,6 +105,10 @@ function AddEmployee() {
         <Label> Name</Label>
         <Input type='text' name='name' id='name' value={data.name} placeholder='Enter name'
         onChange={e=> setData({...data, name: e.target.value})}/>
+
+        <Label> Slary</Label>
+        <Input type='text' name='salary' id='name' value={data.salary} placeholder='Enter salary'
+        onChange={e=> setData({...data, salary: e.target.value})}/>
 
         <Label> Email</Label>
         <Input type='email' name='email' id='email' value={data.email} placeholder='Enter email'
