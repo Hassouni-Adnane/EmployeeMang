@@ -11,6 +11,7 @@ const app = express();
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
+app.use(express.static('public'));
 
 const con = mysql.createConnection({
     host: "localhost",
@@ -92,7 +93,37 @@ app.get('/getEmployee', (req, res)=>{
     })
 })
 
-   
+app.get('/get/:id', (req, res)=>{
+    const id = req.params.id;
+    const sql = 'SELECT * FROM employee WHERE id=?'
+    con.query(sql, [id], (err, result)=>{
+        if(err) return res.json({Error: 'error in getting employee'});
+        return res.json({Status: 'success', Result: result});
+    })
+})
+
+app.post('/update/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "UPDATE employee SET name = ?, salary = ?, email = ?, address = ? WHERE id = ?";    
+    const { name, salary, email, address } = req.body;
+        
+        const values = [name, salary, email, address, id];
+        
+        con.query(sql, values, (err, result) => {
+            if (err) {
+                console.error(err);
+                return res.json({ Status: "error", Error: "error in running query" });
+            }
+            
+            if (result.affectedRows > 0) {
+                console.log("Update is a Success!!!!!!\n");
+                return res.json({ Status: "success" });
+            } else {
+                console.error(err);
+                return res.json({ Status: "error", Error: "Update failed" });
+            }
+        });
+    });
 
 app.listen(8081, ()=> {
     console.log("running");

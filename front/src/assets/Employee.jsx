@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Container = styled.div`
   display: flex;
@@ -34,6 +35,7 @@ const LinkLabel = styled(Link)`
   border: none;
   cursor: pointer;
   margin: auto;
+  margin-bottom: 10px;
 `
 const Table = styled.table`
   width: 100%;
@@ -59,30 +61,43 @@ const Table = styled.table`
   }
 `
 const Edit = styled.button`
+  border-radius: 20px;
+  border: none;
   padding: 10px;
   background-color: lightgray;
-  margin-right: 5px;
+  margin: 0 5px 5px 0;
   cursor: pointer;
   :hover{
-    background-color: gray;
+    background-color: #4040e1;
     //transition: 0.5s step-start;
   }
+
 `
 const Delete = styled.button`
+  border-radius: 20px;
+  border: none;
   padding: 10px;
   background-color: lightgray;
   cursor: pointer;
   :hover{
-    background-color: gray;
+    background-color: red;
   }
 `
 const TableContainer = styled.div`
   height: 62vh;
   overflow-x: auto;
-`;
+`
+const Image = styled.img`
+  max-height: 50vh;
+  aspect-ratio: 16/9;
+  width: auto; /* Ensure the image takes up the full width of its container */
+  max-width: 100%; /* Limit the image width to its container's width */
+  height: auto; /* Allow the height to adjust proportionally based on the aspect ratio */
+  border-radius: 50%;
+`
 
 function Employee() {
-
+  const navigate = useNavigate('');
   const [data, setData] = useState([]);
   useEffect(()=>{
     axios.get('http://localhost:8081/getEmployee')
@@ -124,11 +139,13 @@ function Employee() {
                   </td><td>
                     {employee.address}
                   </td><td>
-                    {employee.image}
+                    <Image src={'http://localhost:8081/images/'+employee.image} />
                   </td><td>
                     {employee.salary}
                   </td>
-                  <td><Edit>Edit</Edit><Delete>Delete</Delete></td>
+                  <td><Edit onClick={()=>{
+                    navigate('/employeeEdit/'+employee.id)
+                  }}>Edit</Edit><Delete>Delete</Delete></td>
                 </tr>
               })}
             </tbody>
