@@ -108,7 +108,18 @@ function Employee() {
     })
     .catch(err=>console.log(err))
   },[]);
-
+  const handleDelete = (id)=>{
+    axios.delete('http://localhost:8081/delete/'+id)
+    .then((res) => {
+      console.log(res);
+      // After successful deletion, you might want to update your UI to reflect the change.
+      // You can remove the deleted employee from the 'data' state.
+      setData((prevData) => prevData.filter((employee) => employee.id !== id));
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
   return (
     
     <Container>
@@ -145,7 +156,7 @@ function Employee() {
                   </td>
                   <td><Edit onClick={()=>{
                     navigate('/employeeEdit/'+employee.id)
-                  }}>Edit</Edit><Delete>Delete</Delete></td>
+                  }}>Edit</Edit><Delete onClick={e=>handleDelete(employee.id)}>Delete</Delete></td>
                 </tr>
               })}
             </tbody>

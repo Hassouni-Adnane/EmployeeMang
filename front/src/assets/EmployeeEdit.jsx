@@ -75,9 +75,9 @@ function EmployeeEdit() {
   const [data, setData] = useState({
     name: '',
     email: '',
-    password: '',
     address: '',
-    image: '',
+    salary: '',
+    id: '',
   })
   useEffect(() => {
     axios
@@ -90,6 +90,7 @@ function EmployeeEdit() {
             salary: employeeData.salary,
             email: employeeData.email,
             address: employeeData.address,
+            id: id,
           });
         }
       })
@@ -98,17 +99,12 @@ function EmployeeEdit() {
 
   const handleSubmit = (event =>{
     event.preventDefault();
-    const formdata = new FormData();
-    formdata.append('name', data.name);
-    formdata.append('salary', data.salary);
-    formdata.append('email', data.email);
-    formdata.append('address', data.address);
 
-    axios.post('http://localhost:8081/update/'+id, formdata)
+    axios.post('http://localhost:8081/edit', data)
     .then(res=>{
       navigate('/employee')
     })
-    .catch(console.log(err));
+    .catch((err)=>{console.log(err)});
   })
 
   return (

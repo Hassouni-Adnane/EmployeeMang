@@ -102,17 +102,16 @@ app.get('/get/:id', (req, res)=>{
     })
 })
 
-app.post('/update/:id', (req, res) => {
-    const id = req.params.id;
+app.post('/edit', (req, res) => {
     const sql = "UPDATE employee SET name = ?, salary = ?, email = ?, address = ? WHERE id = ?";    
-    const { name, salary, email, address } = req.body;
+    const { name, salary, email, address, id } = req.body;
         
         const values = [name, salary, email, address, id];
         
         con.query(sql, values, (err, result) => {
             if (err) {
                 console.error(err);
-                return res.json({ Status: "error", Error: "error in running query" });
+                return res.json({ Status: "error", Error: err });
             }
             
             if (result.affectedRows > 0) {
@@ -120,10 +119,23 @@ app.post('/update/:id', (req, res) => {
                 return res.json({ Status: "success" });
             } else {
                 console.error(err);
-                return res.json({ Status: "error", Error: "Update failed" });
+                return res.json({ Status: "error", Error: err });
             }
         });
+    console.log(req.body)
     });
+    
+app.delete('/delete/:id', (req, res)=>{
+    const id = req.params.id;
+    const sql = 'DELETE FROM employee WHERE id=?';
+    con.query(sql, [id], (err, result)=>{
+        if(err){
+            return res.json({Error: err})
+        }
+        console.log(result);
+        return res.json({Status: 'success', Result: result})
+    })
+})
 
 app.listen(8081, ()=> {
     console.log("running");
